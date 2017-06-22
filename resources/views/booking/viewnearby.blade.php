@@ -421,11 +421,53 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!-- features -->
     <div class="features" id="features">
-        <div class="container">
+    <h3> Recommended Partners </h3>
+        <div class="content">
+                <div class="container-fluid">
+                
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+
+                            <li role="presentation" class=""><a href="#catering" id="catering-tab" data-toggle="tab" aria-controls="catering" aria-expanded="false">Catering Services</a></li>
+
+                            <li role="presentation" class=""><a href="#equipment" id="equipment-tab" data-toggle="tab" aria-controls="equipment" aria-expanded="false">Equipment Services</a></li>
+
+                            <li role="presentation" class=""><a href="#manpower" id="manpower-tab" data-toggle="tab" aria-controls="manpower" aria-expanded="false">Event Accessories</a></li>
+
+                            <li role="presentation" class=""><a href="#videographer" id="videographer-tab" data-toggle="tab" aria-controls="videographer" aria-expanded="false">Videographer/Photographer</a></li>
+
+                            <li role="presentation" class=""><a href="#printables" id="printables-tab" data-toggle="tab" aria-controls="printables" aria-expanded="false">Printables/Giveaways</a></li>
+
+                            <li role="presentation" class=""><a href="#flower" id="flower-tab" data-toggle="tab" aria-controls="flower" aria-expanded="false">Flowerist and Styles</a></li>
+
+                            <li role="presentation" class=""><a href="#entertainment" id="entertainment-tab" data-toggle="tab" aria-controls="entertainment" aria-expanded="false">Entertainment Services</a></li>
+
+                            <li role="presentation" class=""><a href="#cakes" id="cakes-tab" data-toggle="tab" aria-controls="cakes" aria-expanded="false">Cake and Pastry</a></li>
+
+                            <li role="presentation" class=""><a href="#wines" id="wines-tab" data-toggle="tab" aria-controls="wines" aria-expanded="false">Wines and Beverages</a></li>
+
+                            <li role="presentation" class=""><a href="#styling" id="styling-tab" data-toggle="tab" aria-controls="styling" aria-expanded="false">Styling Services</a></li>                                  
+
+                            <li role="presentation" class=""><a href="#tailoring" id="tailoring-tab" data-toggle="tab" aria-controls="tailoring" aria-expanded="false">Tailoring and Design Services</a></li>
+
+                            <li role="presentation" class=""><a href="#bridalcars" id="bridalcars-tab" data-toggle="tab" aria-controls="bridalcars" aria-expanded="false">Bridal Car Services</a></li>
+
+                            <li role="presentation" class=""><a href="#recommended" id="recommended-tab" data-toggle="tab" aria-controls="recommended" aria-expanded="false">Recommended</a></li>
+
+
+                    </ul>
+
+                        </div>        
+
+
+            <div id="myTabContent" class="tab-content">
+            
+
+            <div role="tabpanel" class="tab-pane fade active in" id="catering" aria-labelledby="catering-tab">
+           
             <div class="row">
-            <h3>Recommended Partners</h3>
             @foreach($joins as $join)
-                    
+                    @if($join->servicetype == '1')
                     <div class="col-sm-4 col-lg-4 col-md-4">
                          <div class="thumbnail" style="width:320px; height:285px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
@@ -436,10 +478,228 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                             </div>
                          </div>
                     </div>
-                   
+                    @endif
             @endforeach
             </div>
-        </div>
+            </div>
+            
+
+            <div role="tabpanel" class="tab-pane fade active in" id="equipment" aria-labelledby="equipment-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '2')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="manpower" aria-labelledby="manpower-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '3')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="printables" aria-labelledby="printables-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '4')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="videographer" aria-labelledby="videographer-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '5')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="flower" aria-labelledby="flower-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '6')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="entertainment" aria-labelledby="entertainment-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '7')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="cakes" aria-labelledby="cakes-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '8')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="wines" aria-labelledby="wines-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '9')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="styling" aria-labelledby="styling-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '10')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="tailoring" aria-labelledby="tailoring-tab">
+            <div class="row">
+            @foreach($joins as $join)
+                    @if($join->servicetype == '11')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @endforeach
+            </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade active in" id="bridalcars" aria-labelledby="bridalcars-tab">
+            <div class="row">
+            @forelse($joins as $join)
+                    @if($join->servicetype == '12')
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
+                            <div class="caption">
+                                <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
+                                <p>{{$join->name}}</p></a></h2>
+                                <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                         </div>
+                    </div>
+                    @endif
+            @empty
+             @if($join->servicetype == '12')
+            <p style="margin-left: 10px;color: red;">There are no registered partners.</p>
+            @endif
+            @endforelse
+            </div>
+            </div>
+
+            </div>
+            </div>
+            </div>
     </div>
 <!-- //features-->
 

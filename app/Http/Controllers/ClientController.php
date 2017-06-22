@@ -119,7 +119,7 @@ class ClientController extends Controller
         //$distance = Nearby::orderBy('distance','DESC')->where('user_id',$userid)->get();
          //$nearby_pid = Nearby::select('partner_id')->orderBy('distance','DESC')->where('user_id',$userid)->get();
          //$compare_ad = Admin::where('id',$nearby_pid)->value('name')->get();
-        $joins = DB::table('admins')->join('nearby','admins.id','=','nearby.partner_id')->select('admins.name','admins.avatar','admins.id','admins.address','nearby.partner_id')->orderBy('nearby.distance','DESC')->where('nearby.user_id',$userid)->distinct()->get();
+        $joins = DB::table('admins')->join('nearby','admins.id','=','nearby.partner_id')->select('admins.name','admins.avatar','admins.id','admins.address','admins.servicetype','nearby.partner_id')->orderBy('nearby.distance','DESC')->where('nearby.user_id',$userid)->distinct()->get();
                     
         return view('/booking/viewnearby',array('user', Auth::guard('user')->user()),compact('joins'));
 
