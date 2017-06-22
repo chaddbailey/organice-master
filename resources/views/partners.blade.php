@@ -202,7 +202,7 @@ Service Partners
                     <div class="col-md-4">
                         <div class="form-group">
                         @foreach($data as $h)
-                          <label class="control-label">No. of Heads</label>
+                          <label class="control-label">No. of Guests</label>
                           <input type="text" name="heads" id="heads" class="form-control" value="{{$h->heads}}" placeholder="no. of heads">
                         @endforeach
                         </div>

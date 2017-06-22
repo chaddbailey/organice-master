@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\EventType;
+use App\Admin;
+use DB;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -85,5 +88,13 @@ class AuthController extends Controller
             'budget' => $data['budget'],
             'mobile' => $data['mobile'],
         ]);
+    }
+
+    public function logout()
+    {
+        Db::table('nearby')->delete();
+        Auth::logout();
+        $admins = Admin::all();
+        return view('welcome', compact('admins'));
     }
 }
