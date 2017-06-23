@@ -486,6 +486,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		@yield('script')
 		<!-- load Rating JS -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsmYK9yYsJukH7KXcd2sOVJ8ANklrJU3A&libraries=places&callback=initMap"></script>
+
 <!-- //js-scripts -->
 </body>
 </html>

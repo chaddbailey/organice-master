@@ -21,7 +21,7 @@ class ServicetypeTableSeeder extends Seeder
     	],
     	[
     	'service_id' => 3,
-    	'type' => 'Manpower Services'
+    	'type' => 'Event Accessories'
     	],
     	[
     	'service_id' => 4,

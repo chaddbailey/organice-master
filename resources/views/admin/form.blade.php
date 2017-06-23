@@ -254,7 +254,7 @@
                    
                     <div class="caption">
                         <h4>{{$packages->packagename}}</h4>
-                        <span class="label label-info">Price: ₱ {{$packages->price}}.00</span>
+                        <span class="label label-info">Price: ₱ {{$packages->price}}</span>
                     </div>
                     
                       <span class="pull-right"> <a href="{{ url('admin/edit'. $packages->id)}}" class="btn btn-primary"> Edit </a> </span>

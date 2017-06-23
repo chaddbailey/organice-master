@@ -71,7 +71,7 @@ Organice - Home
             </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane fade active in" id="manpower" aria-labelledby="manpower-tab">
+            <div role="tabpanel" class="tab-pane fade active in" id="accessories" aria-labelledby="accessories-tab">
             <div class="row">
             @foreach($admins as $admin)
                     @if($admin->servicetype == '3')

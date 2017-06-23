@@ -225,7 +225,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
                             				<li role="presentation" class=""><a href="#equipment" aria-expanded="false">Equipments</a></li>
 
-                            				<li role="presentation" class=""><a href="#manpower" aria-expanded="false">Man Power</a></li>
+                            				<li role="presentation" class=""><a href="#accessories" aria-expanded="false">Event Accessories</a></li>
 
                             				<li role="presentation" class=""><a href="#videographer" aria-expanded="false">Videographer/Photographer</a></li>
 
@@ -463,7 +463,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
                             <li role="presentation" class=""><a href="#equipment" id="equipment-tab" data-toggle="tab" aria-controls="equipment" aria-expanded="false">Equipment Services</a></li>
 
-                            <li role="presentation" class=""><a href="#manpower" id="manpower-tab" data-toggle="tab" aria-controls="manpower" aria-expanded="false">Event Accessories</a></li>
+                            <li role="presentation" class=""><a href="#accessories" id="accessories-tab" data-toggle="tab" aria-controls="accessories" aria-expanded="false">Event Accessories</a></li>
 
                             <li role="presentation" class=""><a href="#videographer" id="videographer-tab" data-toggle="tab" aria-controls="videographer" aria-expanded="false">Videographer/Photographer</a></li>
 

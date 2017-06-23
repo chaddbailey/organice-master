@@ -30,21 +30,27 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="https://fonts.googleapis.com/css?family=Kanit:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,thai,vietnamese" rel="stylesheet">
 <!-- //online-fonts -->
 <style>
-          /* Always set the map height explicitly to define the size of the div
-           * element that contains the map. */
-          #map {
-            margin-left: 2px;
-            height: 300px;
-            width: 500px;
-            border-radius: 15px;
+          table {
+              font-family: arial, sans-serif;
+              font-size: 20px;
+              border-collapse: collapse;
+              width: 100%;
+              text-align: center; 
           }
-          /* Optional: Makes the sample page fill the window. */
-          html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
+
+          td, th {
+              border: 1px solid #dddddd;
+              padding: 8px;
+              text-align: center;
           }
-        </style>
+
+          .design{
+            background-color: #dddddd;
+            text-align: left;
+            font-weight: bolder;
+          }
+</style>
+
 </head>
 <body>
 <div class="Main-agile">
@@ -212,26 +218,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4>Dream Wedding</h4>
-                                            <h5>Organice your wedding with these services.</h5>
-                                            <img src="../assets2/images/b1.jpg" alt="blog-image" />
                                             
-                                            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-
-                                            <ul id="myTab" class="nav nav-tabs" role="tablist">
-                                            <li><a href="#catering" aria-expanded="false">Catering</a></li>
-
-                                            <li role="presentation" class=""><a href="#equipment" aria-expanded="false">Equipments</a></li>
-
-                                            <li role="presentation" class=""><a href="#manpower" aria-expanded="false">Man Power</a></li>
-
-                                            <li role="presentation" class=""><a href="#videographer" aria-expanded="false">Videographer/Photographer</a></li>
-
-                                            <li role="presentation" class=""><a href="#printables" aria-expanded="false">Printables/Giveaways</a></li>
-
-                                            <li role="presentation" class=""><a href="#flower" aria-expanded="false">Flower Shops</a></li>
-                                            </ul>
-                                            </div>
                                 </div>
                             </div>
                             </div>
@@ -255,159 +242,187 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
 
-            <div class="col-md-6 pull-right">
-                        <form action="/req/event" class="col-md-10">
+            <div class="col-md-5 pull-right">
+                        
                                <div class="col-md-10">
-                                <div class="form-group">
-                                <h1 class="h1fontcolor">Search a venue for your event. <i class="fa fa-map-marker" style="font-size:50px"></i></h1>
-                                <hr>
-                                <input type="text" name="venue" id="venue" class="form-control" value=""  placeholder=" ">
-                                <input id="clat" name="clat" type="text" class="setup-textp hidden ">
-                                <input id="clong" name="clong" type="text" class="setup-textp hidden">
-                                </div>
-                                </div>
+                                    <div class="form-group">
+                                    <h1 class="h1fontcolor">Here's the breakdown of your expense which we allocated to each of the services you need for your event. <i class="fa fa-dollar" style="font-size:30px"></i></h1>
+                                    <hr>
+                                    <!-- Wedding Event-->
+                                    @if($types === 'Wedding')
+                                    <h1 style="font-size:50px; text-align: center;padding-top: 50px;">Wedding Event</h1>
 
-                                <div class="form-group col-md-10">
-                                <button type="submit" class="btn btn-primaryvenue"><i class="fa fa-search" style="font-size:30px"></i>Search</button>
+                                    </div>
                                 </div>
-                        </form>
+                        
             </div>
-           <div class="col-sm-4 pull-left" style="margin-left: 130px;">
-                       <div class="row">
-                      
-                         <div id="map"></div> 
+           <div class="col-sm-6 pull-left" style="margin-left: 40px;">
+              <h3 style="font-size:30px; text-align: center;"">Total Projected Budget: ₱ {{$budget}}</h3>
+                     <div class="row"> 
+                             <table class="table" style="position: center;">
+                                 <tr>
+                                     <th>Cost Drivers / Services</th>
+                                     <th>Allocated Budget</th>
+                                 </tr>
+                                 <tr>
+                                      <td class="design">Venue, Food and Beverages</td>
+                                      <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Catering/Food</td>
+                                     <td>₱ {{$catering_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Bartending/Beverages <small>(wines,alcohols,glasswares,etc...)</small> </td>
+                                     <td>₱ {{$wine_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Cakes and Pastries</td>
+                                     <td>₱ {{$cakes_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Decorations</td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Equipment <small>(lightings,rentals,chairs,sounds,etc...)</small></td>
+                                     <td>₱ {{$equipment_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Florist/Bouquet <small>(personal,decor flowers,etc...)</small></td>
+                                     <td>₱ {{$equipment_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Photography/Videography</td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Photography and Videography <small>(photobooths,props,etc...)</small></td>
+                                     <td>₱ {{$photography_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Stationary/Paper Goods</td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
+                                     <td>₱ {{$giveaways_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Entertainment </td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Entertainment <small>(DJ,Bands,DI,Emcee,Dancers,etc...)</small></td>
+                                     <td>₱ {{$entertainment_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Attire and Make-up </td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Styling <small>(hair and make-up,etc...)</small></td>
+                                     <td>₱ {{$styling_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Tailoring <small>(outfits,suits,gowns,etc...)</small> </td>
+                                     <td>₱ {{$tailoring_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Wedding Accessories and Others </td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Accessories <small>(accessories,rings,bracelets,etc...)</small></td>
+                                     <td>₱ {{$accessories_alloc}}</td>
+                                 </tr>
+                                 <tr>
+                                     <td class="design">Entourage </td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Bridal Car/Entourage</td>
+                                     <td>₱ {{$bridalcar_alloc}}</td>
+                                 </tr>
+                             </table>
+                     </div>
+                @endif 
+
+                <!-- Birthday Event -->   
+                                     @if($types === 'Birthday')
+                                     <h1 style="font-size:60px; text-align: center;padding-top: 50px;">Birthday Event</h1>
+                                                            
+                                     </div>
+                                 </div>
                          
-                       </div>
+             </div>
+            <div class="col-sm-6 pull-left" style="margin-left: 40px;">
+               <h3 style="font-size:30px; text-align: center;"">Total Projected Budget: ₱ {{$budget}}</h3>
+                      <div class="row"> 
+                              <table class="table" style="position: center;">
+                                  <tr>
+                                      <th>Cost Drivers / Services</th>
+                                      <th>Allocated Budget</th>
+                                  </tr>
+                                  <tr>
+                                      <td class="design">Venue, Food and Beverages</td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Catering/Food</td>
+                                      <td>₱ {{$catering_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Bartending/Beverages <small>(wines,alcohols,glasswares,etc...)</small> </td>
+                                      <td>₱ {{$wine_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Cakes and Pastries</td>
+                                      <td>₱ {{$cakes_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="design">Decorations</td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Equipment <small>(lightings,rentals,chairs,sounds,etc...)</small></td>
+                                      <td>₱ {{$equipment_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Florist/Bouquet <small>(personal,decor flowers,etc...)</small></td>
+                                      <td>₱ {{$equipment_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="design">Photography/Videography</td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Photography and Videography <small>(photobooths,props,etc...)</small></td>
+                                      <td>₱ {{$photography_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="design">Stationary/Paper Goods</td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
+                                      <td>₱ {{$giveaways_alloc}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="design">Entertainment </td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Entertainment <small>(DJ,Bands,DI,Emcee,Dancers,etc...)</small></td>
+                                      <td>₱ {{$entertainment_alloc}}</td>
+                                  </tr>
+                                  
+                              </table>
+                      </div>
+                 @endif
+
             </div>
-        
-
-                      
-                      <script type="text/javascript">
-
-                         var map;
-                          var centers = {lat:10.309937078055952,lng:123.89307975769043};
-                          function initMap() {
-                                  map = new google.maps.Map(document.getElementById('map'), {
-                                      center:centers,
-                                      zoom: 18,
-                                      mapTypeId: google.maps.MapTypeId.HYBRID
-                                    });
-                                    
-
-                                    var input = document.getElementById('venue');
-                                    var searchBox = new google.maps.places.SearchBox(input);
-
-
-                                          // Bias the SearchBox results towards current map's viewport.
-                                          map.addListener('bounds_changed', function() {
-                                            searchBox.setBounds(map.getBounds());
-                                          });
-
-                                          var markers = [];
-                                          google.maps.event.addListener(map, 'click', function (e) {
-
-                                            var ll = {lat: e.latLng.lat(), lng: e.latLng.lng()}; 
-
-                                                //alert(e.latLng.lat());  
-                                                markers.forEach(function(marker) {
-                                                  marker.setMap(null);
-                                                });
-                                                
-                                                markers = []; 
-
-                                                lastMarker = new google.maps.Marker({
-                                                  position: ll,
-                                                  map: map,
-                                                  title: 'Hello World!'
-                                                });
-                                                markers.push(lastMarker);
-
-                                                getAddressByLatlng(ll);
-
-
-                                            });
-
-                                          // Listen for the event fired when the user selects a prediction and retrieve
-                                          // more details for that place.
-                                          searchBox.addListener('places_changed', function() {
-                                            var places = searchBox.getPlaces();
-
-                                            if (places.length == 0) {
-                                              return;
-                                            }
-
-                                            // Clear out the old markers.
-                                            markers.forEach(function(marker) {
-                                              marker.setMap(null);
-                                            });
-                                            markers = [];
-
-                                            // For each place, get the icon, name and location.
-                                            var bounds = new google.maps.LatLngBounds();
-                                            places.forEach(function(place) {
-                                              var icon = {
-                                                url: place.icon,
-                                                size: new google.maps.Size(71, 71),
-                                                origin: new google.maps.Point(0, 0),
-                                                anchor: new google.maps.Point(17, 34),
-                                                scaledSize: new google.maps.Size(25, 25)
-                                              };
-
-                                              // Create a marker for each place.
-                                              markers.push(new google.maps.Marker({
-                                                map: map,
-                                                icon: icon,
-                                                title: place.name,
-                                                position: place.geometry.location
-                                              }));
-
-                                              if (place.geometry.viewport) {
-                                                // Only geocodes have viewport.
-                                                bounds.union(place.geometry.viewport);
-                                            } else {
-                                              bounds.extend(place.geometry.location);
-                                            }
-                                        });
-                                            map.fitBounds(bounds);
-                                        });
-
-                                              function getAddressByLatlng(latlng){
-
-                                                var lat =latlng.lat;
-                                                var lng =latlng.lng;
-
-                                                var inputSearchBox = document.getElementById('venue');
-
-                                                var cLatValId = document.getElementById('clat');
-                                                var cLongValId = document.getElementById('clong');
-
-                                                cLatValId.value=lat;
-                                                cLongValId.value=lng;
-
-                                                var geocoder = new google.maps.Geocoder();
-                                                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                                                  if (status == google.maps.GeocoderStatus.OK) {
-                                                    if (results[1]) {
-                                                      inputSearchBox.value =  results[1].formatted_address;
-                                                    }
-                                                    var res = results[0].address_components;
-                                                    for(var i=0; i<res.length; i++){
-                                                      if(res[i].types[0] =="locality"){
-                                                        local= res[i].long_name;
-                                                   // console.log(nearbs);
-                                               }
-                                           }       
-
-                                       }
-                                      });
-                                              }
-
-                                      }
-
-        
-
-                      </script>
-                      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsmYK9yYsJukH7KXcd2sOVJ8ANklrJU3A&libraries=places&callback=initMap"></script>
+    
             </div>  
                         
                     

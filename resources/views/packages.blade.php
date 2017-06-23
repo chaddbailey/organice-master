@@ -89,7 +89,7 @@ Packages
                         </div>
                         <div class="caption">
                            
-                            <span class="label label-warning"><h4>Price: ₱ {{$packages->price}}.00</h4></span> 
+                            <span class="label label-warning"><h4>Price: ₱ {{$packages->price}}</h4></span> 
                             <span><a href="{{url('/content/'.$packages->id)}}" class="btn btn-primary">Show Content</a></span>
                         </div>
                         

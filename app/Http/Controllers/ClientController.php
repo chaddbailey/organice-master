@@ -115,13 +115,100 @@ class ClientController extends Controller
 
             }
         }
-       
+        
         //$distance = Nearby::orderBy('distance','DESC')->where('user_id',$userid)->get();
          //$nearby_pid = Nearby::select('partner_id')->orderBy('distance','DESC')->where('user_id',$userid)->get();
          //$compare_ad = Admin::where('id',$nearby_pid)->value('name')->get();
         $joins = DB::table('admins')->join('nearby','admins.id','=','nearby.partner_id')->select('admins.name','admins.avatar','admins.id','admins.address','admins.servicetype','nearby.partner_id')->orderBy('nearby.distance','DESC')->where('nearby.user_id',$userid)->distinct()->get();
-                    
-        return view('/booking/viewnearby',array('user', Auth::guard('user')->user()),compact('joins'));
+
+
+        $types = ReqUsers::where('client_id','=',$userid)->value('event');
+        $budget = ReqUsers::value('budget');
+        //---FOR WEDDING TYPE EVENT
+        if($types === 'Wedding'){        
+        //n% for catering
+        $type = Admin::value('servicetype','=', 1);
+        $budget = ReqUsers::value('budget');
+        $catering_criteria = 0.9; 
+        $catering_alloc = $catering_criteria * $budget;
+        //n% for equipment
+        $type = Admin::value('servicetype','=', 2);
+        $equipment_criteria = 0.8; 
+        $equipment_alloc = $equipment_criteria * $catering_alloc;
+        //n% for photography
+        $type = Admin::value('servicetype','=', 5);
+        $photography_criteria = 0.7; 
+        $photography_alloc = $photography_criteria * $equipment_alloc;
+        //n% for styling
+        $type = Admin::value('servicetype','=', 10);
+        $styling_criteria = 0.6; 
+        $styling_alloc = $styling_criteria * $photography_alloc;
+        //n% for tailoring
+        $type = Admin::value('servicetype','=', 11);
+        $tailoring_criteria = 0.5; 
+        $tailoring_alloc = $tailoring_criteria * $styling_alloc;
+        //n% for giveaways
+        $type = Admin::value('servicetype','=', 4);
+        $giveaways_criteria = 0.4; 
+        $giveaways_alloc = $giveaways_criteria * $tailoring_alloc;
+        //n% for florist
+        $type = Admin::value('servicetype','=', 6);
+        $florist_criteria = 0.3; 
+        $florist_alloc = $florist_criteria * $giveaways_alloc;
+        //n% for entertainment
+        $type = Admin::value('servicetype','=', 7);
+        $entertainment_criteria = 0.2; 
+        $entertainment_alloc = $entertainment_criteria * $florist_alloc;
+        //n% for accessories
+        $type = Admin::value('servicetype','=', 3);
+        $accessories_criteria = 0.1; 
+        $accessories_alloc = $accessories_criteria * $entertainment_alloc;
+        //n% for wine
+        $type = Admin::value('servicetype','=', 9);
+        $wine_criteria = 0.09; 
+        $wine_alloc = $wine_criteria * $accessories_alloc;
+        //n% for cakes
+        $type = Admin::value('servicetype','=', 8);
+        $cakes_criteria = 0.08; 
+        $cakes_alloc = $cakes_criteria * $wine_alloc;
+        //n% for bridal
+        $type = Admin::value('servicetype','=', 12);
+        $bridalcar_criteria = 0.07; 
+        $bridalcar_alloc = $bridalcar_criteria * $cakes_alloc;
+        }
+        if ($types === 'Birthday') {
+        //n% for catering
+        $type = Admin::value('servicetype','=', 1);
+        $catering_criteria = 0.9; 
+        $catering_alloc = $catering_criteria * $budget;
+        //n% for equipment
+        $type = Admin::value('servicetype','=', 2);
+        $equipment_criteria = 0.8; 
+        $equipment_alloc = $equipment_criteria * $catering_alloc;
+        //n% for photography
+        $type = Admin::value('servicetype','=', 5);
+        $photography_criteria = 0.7; 
+        $photography_alloc = $photography_criteria * $equipment_alloc;
+        //n% for giveaways
+        $type = Admin::value('servicetype','=', 4);
+        $giveaways_criteria = 0.4; 
+        $giveaways_alloc = $giveaways_criteria * $photography_alloc;
+        //n% for wine
+        $type = Admin::value('servicetype','=', 9);
+        $wine_criteria = 0.09; 
+        $wine_alloc = $wine_criteria * $giveaways_alloc;
+        //n% for entertainment
+        $type = Admin::value('servicetype','=', 7);
+        $entertainment_criteria = 0.2; 
+        $entertainment_alloc = $entertainment_criteria * $wine_alloc;
+        //n% for cakes
+        $type = Admin::value('servicetype','=', 8);
+        $cakes_criteria = 0.08; 
+        $cakes_alloc = $cakes_criteria * $entertainment_alloc;
+        }
+
+
+        return view('/booking/viewnearby',array('user', Auth::guard('user')->user()),compact('joins','types','budget','catering_alloc','equipment_alloc','photography_alloc','styling_alloc','tailoring_alloc','giveaways_alloc','florist_alloc','entertainment_alloc','accessories_alloc','photography_alloc','wine_alloc','cakes_alloc','bridalcar_alloc'));
 
     }
 
