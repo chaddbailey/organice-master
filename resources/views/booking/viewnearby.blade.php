@@ -250,7 +250,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                     <hr>
                                     <!-- Wedding Event-->
                                     @if($types === 'Wedding')
-                                    <h1 style="font-size:50px; text-align: center;padding-top: 50px;">Wedding Event</h1>
+                                    <h1 style="font-size:50px; text-align: center;padding-top: 50px;">{{$types}}</h1>
 
                                     </div>
                                 </div>
@@ -270,15 +270,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Catering/Food</td>
-                                     <td>₱ {{$catering_alloc}}</td>
+                                     <td>₱ {{$catering_final}}</td>
                                  </tr>
                                  <tr>
                                      <td>Bartending/Beverages <small>(wines,alcohols,glasswares,etc...)</small> </td>
-                                     <td>₱ {{$wine_alloc}}</td>
+                                     <td>₱ {{$wine_final}}</td>
                                  </tr>
                                  <tr>
                                      <td>Cakes and Pastries</td>
-                                     <td>₱ {{$cakes_alloc}}</td>
+                                     <td>₱ {{$cakes_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Decorations</td>
@@ -286,11 +286,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Equipment <small>(lightings,rentals,chairs,sounds,etc...)</small></td>
-                                     <td>₱ {{$equipment_alloc}}</td>
+                                     <td>₱ {{$equipment_final}}</td>
                                  </tr>
                                  <tr>
                                      <td>Florist/Bouquet <small>(personal,decor flowers,etc...)</small></td>
-                                     <td>₱ {{$equipment_alloc}}</td>
+                                     <td>₱ {{$florist_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Photography/Videography</td>
@@ -298,7 +298,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Photography and Videography <small>(photobooths,props,etc...)</small></td>
-                                     <td>₱ {{$photography_alloc}}</td>
+                                     <td>₱ {{$photography_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Stationary/Paper Goods</td>
@@ -306,15 +306,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
-                                     <td>₱ {{$giveaways_alloc}}</td>
+                                     <td>₱ {{$giveaways_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Entertainment </td>
                                      <td></td>
                                  </tr>
                                  <tr>
-                                     <td>Entertainment <small>(DJ,Bands,DI,Emcee,Dancers,etc...)</small></td>
-                                     <td>₱ {{$entertainment_alloc}}</td>
+                                     <td>Entertainment <small>(DJ,bands,DI,emcee,dancers,etc...)</small></td>
+                                     <td>₱ {{$entertainment_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Attire and Make-up </td>
@@ -322,11 +322,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Styling <small>(hair and make-up,etc...)</small></td>
-                                     <td>₱ {{$styling_alloc}}</td>
+                                     <td>₱ {{$styling_final}}</td>
                                  </tr>
                                  <tr>
                                      <td>Tailoring <small>(outfits,suits,gowns,etc...)</small> </td>
-                                     <td>₱ {{$tailoring_alloc}}</td>
+                                     <td>₱ {{$tailoring_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Wedding Accessories and Others </td>
@@ -334,7 +334,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Accessories <small>(accessories,rings,bracelets,etc...)</small></td>
-                                     <td>₱ {{$accessories_alloc}}</td>
+                                     <td>₱ {{$accessories_final}}</td>
                                  </tr>
                                  <tr>
                                      <td class="design">Entourage </td>
@@ -342,15 +342,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                  </tr>
                                  <tr>
                                      <td>Bridal Car/Entourage</td>
-                                     <td>₱ {{$bridalcar_alloc}}</td>
+                                     <td>₱ {{$bridalcar_final}}</td>
                                  </tr>
                              </table>
                      </div>
                 @endif 
 
                 <!-- Birthday Event -->   
-                                     @if($types === 'Birthday')
-                                     <h1 style="font-size:60px; text-align: center;padding-top: 50px;">Birthday Event</h1>
+                                     @if($types === 'Birthday'|| $types === 'Wedding Anniversary'|| $types === 'Christening'|| $types === 'Thanksgiving'|| $types === 'Debut'|| $types === 'Baby Shower'|| $types === 'Bridal Shower'|| $types === 'Founders Day Celebration'|| $types === 'Fashion Show'|| $types === 'Death Anniversary'|| $types === 'Graduation'|| $types === 'Simple Celebration')
+                                     <h1 style="font-size:60px; text-align: center;padding-top: 50px;">{{$types}}</h1>
                                                             
                                      </div>
                                  </div>
@@ -370,15 +370,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                   </tr>
                                   <tr>
                                       <td>Catering/Food</td>
-                                      <td>₱ {{$catering_alloc}}</td>
+                                      <td>₱ {{$catering_final}}</td>
                                   </tr>
                                   <tr>
                                       <td>Bartending/Beverages <small>(wines,alcohols,glasswares,etc...)</small> </td>
-                                      <td>₱ {{$wine_alloc}}</td>
+                                      <td>₱ {{$wine_final}}</td>
                                   </tr>
                                   <tr>
                                       <td>Cakes and Pastries</td>
-                                      <td>₱ {{$cakes_alloc}}</td>
+                                      <td>₱ {{$cakes_final}}</td>
                                   </tr>
                                   <tr>
                                       <td class="design">Decorations</td>
@@ -386,11 +386,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                   </tr>
                                   <tr>
                                       <td>Equipment <small>(lightings,rentals,chairs,sounds,etc...)</small></td>
-                                      <td>₱ {{$equipment_alloc}}</td>
+                                      <td>₱ {{$equipment_final}}</td>
                                   </tr>
                                   <tr>
                                       <td>Florist/Bouquet <small>(personal,decor flowers,etc...)</small></td>
-                                      <td>₱ {{$equipment_alloc}}</td>
+                                      <td>₱ {{$equipment_final}}</td>
                                   </tr>
                                   <tr>
                                       <td class="design">Photography/Videography</td>
@@ -398,7 +398,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                   </tr>
                                   <tr>
                                       <td>Photography and Videography <small>(photobooths,props,etc...)</small></td>
-                                      <td>₱ {{$photography_alloc}}</td>
+                                      <td>₱ {{$photography_final}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="design">Entertainment </td>
+                                      <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td>Entertainment <small>(DJ,bands,DI,emcee,dancers,etc...)</small></td>
+                                      <td>₱ {{$entertainment_final}}</td>
                                   </tr>
                                   <tr>
                                       <td class="design">Stationary/Paper Goods</td>
@@ -406,16 +414,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                   </tr>
                                   <tr>
                                       <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
-                                      <td>₱ {{$giveaways_alloc}}</td>
+                                      <td>₱ {{$giveaways_final}}</td>
                                   </tr>
-                                  <tr>
-                                      <td class="design">Entertainment </td>
-                                      <td></td>
-                                  </tr>
-                                  <tr>
-                                      <td>Entertainment <small>(DJ,Bands,DI,Emcee,Dancers,etc...)</small></td>
-                                      <td>₱ {{$entertainment_alloc}}</td>
-                                  </tr>
+                                  
                                   
                               </table>
                       </div>
@@ -425,11 +426,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     
             </div>  
                         
-                    
             <div class="clearfix"> </div>
-        </div>
-    </div>
-        
 <!-- //Counter -->
 
 
