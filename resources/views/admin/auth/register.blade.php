@@ -126,7 +126,7 @@ Service Provider Registration
 <div class="wizard-navigation">
 <ul>
 <li><a href="#about" data-toggle="tab">About</a></li>
-<li><a href="#account" data-toggle="tab">Account</a></li>
+<li><a href="#service" data-toggle="tab">Service Type</a></li>
 </ul>
 </div>
 
@@ -138,7 +138,7 @@ Service Provider Registration
 <div class="picture-container">
     <div class="picture">
         <img src="../assets/img-icons/default-avatar.png" class="picture-src" id="wizardPicturePreview" title=""/>
-        <input type="file" id="wizard-picture">
+        <input type="file" name="avatar" value="{{ csrf_token() }}" id="wizard-picture">
     </div>
     <h6>Choose Picture</h6>
 </div>
@@ -269,7 +269,7 @@ Service Provider Registration
 </div>
 </div>
 
-<div class="tab-pane" id="account">
+<div class="tab-pane" id="service">
 <h4 class="info-text"> What service do you offer? <small>(choose only one)</small></h4>
 <div class="row">
 <div class="col-sm-10 col-sm-offset-1 form-group{{ $errors->has('servicetype') ? ' has-error' : '' }}">

@@ -258,7 +258,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Counter -->
 	<div class="ratingfeatures" id="features">
 		<div class="container">
-			<?php
+					<?php
 				 	use App\Reviews;
 				 	use Illuminate\Support\Str;
 				 	use App\User;

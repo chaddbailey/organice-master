@@ -119,7 +119,7 @@ class ClientController extends Controller
         //$distance = Nearby::orderBy('distance','DESC')->where('user_id',$userid)->get();
          //$nearby_pid = Nearby::select('partner_id')->orderBy('distance','DESC')->where('user_id',$userid)->get();
          //$compare_ad = Admin::where('id',$nearby_pid)->value('name')->get();
-        $joins = DB::table('admins')->join('nearby','admins.id','=','nearby.partner_id')->select('admins.name','admins.avatar','admins.id','admins.address','admins.servicetype','nearby.partner_id')->orderBy('nearby.distance','DESC')->where('nearby.user_id',$userid)->distinct()->get();
+        $joins = DB::table('admins')->join('nearby','admins.id','=','nearby.partner_id')->select('admins.name','admins.avatar','admins.id','admins.address','admins.servicetype','admins.rating_cache','rating_count','nearby.partner_id')->orderBy('nearby.distance','DESC')->where('nearby.user_id',$userid)->distinct()->get();
 
 
         $types = ReqUsers::where('client_id','=',$userid)->value('event');
@@ -128,7 +128,7 @@ class ClientController extends Controller
         if($types === 'Wedding'){        
         //n% for catering
         $type = Admin::value('servicetype','=', 1);
-        $catering_criteria = 0.6;
+        $catering_criteria = 0.55;
         $catering_final = number_format(($catering_criteria * $budget),2);
         //n% for wine
         $type = Admin::value('servicetype','=', 9);
@@ -144,7 +144,7 @@ class ClientController extends Controller
         $photography_final = number_format(($photography_criteria * $budget),2);
         //n% for equipment
         $type = Admin::value('servicetype','=', 2);
-        $equipment_criteria = 0.05;
+        $equipment_criteria = 0.10;
         $equipment_final = number_format(($equipment_criteria * $budget),2);
         //n% for florist
         $type = Admin::value('servicetype','=', 6);
@@ -176,7 +176,7 @@ class ClientController extends Controller
         $giveaways_final = number_format(($giveaways_criteria * $budget),2);
         }
         //For other events
-        if ($types === 'Birthday'|| $types === 'Wedding Anniversary'|| $types === 'Christening'|| $types === 'Thanksgiving'|| $types === 'Debut'|| $types === 'Baby Shower'|| $types === 'Bridal Shower'|| $types === 'Founders Day Celebration'|| $types === 'Fashion Show'|| $types === 'Death Anniversary'|| $types === 'Graduation'|| $types === 'Simple Celebration') {
+        else{
         //n% for catering
         $type = Admin::value('servicetype','=', 1);
         $catering_criteria = 0.6; 
@@ -232,92 +232,7 @@ class ClientController extends Controller
         $distinct = ClientRequest::where('client_id',$client)->distinct('event')->get(['event']);
         
 
-        $types = ReqUsers::where('client_id','=',$client)->value('event');
-        $budget = ReqUsers::where('client_id','=',$client)->value('budget');
-        //---FOR WEDDING TYPE EVENT
-        if($types === 'Wedding'){        
-        //n% for catering
-        $type = Admin::value('servicetype','=', 1);
-        $catering_criteria = 0.6;
-        $catering_final = number_format(($catering_criteria * $budget),2);
-        //n% for wine
-        $type = Admin::value('servicetype','=', 9);
-        $wine_criteria = 0.05;
-        $wine_final = number_format(($wine_criteria * $budget),2);
-        //n% for cakes_criteriaes
-        $type = Admin::value('servicetype','=', 8);
-        $cakes_criteria = 0.05;
-        $cakes_final = number_format(($cakes_criteria * $budget),2);
-        //n% for photography
-        $type = Admin::value('servicetype','=', 5);
-        $photography_criteria = 0.05;
-        $photography_final = number_format(($photography_criteria * $budget),2);
-        //n% for equipment
-        $type = Admin::value('servicetype','=', 2);
-        $equipment_criteria = 0.05;
-        $equipment_final = number_format(($equipment_criteria * $budget),2);
-        //n% for florist
-        $type = Admin::value('servicetype','=', 6);
-        $florist_criteria = 0.05;
-        $florist_final = number_format(($florist_criteria * $budget),2);
-        //n% for styling
-        $type = Admin::value('servicetype','=', 10);
-        $styling_criteria = 0.05;
-        $styling_final = number_format(($styling_criteria * $budget),2);
-        //n% for entertainment
-        $type = Admin::value('servicetype','=', 7);
-        $entertainment_criteria = 0.02;
-        $entertainment_final = number_format(($entertainment_criteria * $budget),2);
-        //n% for accessories
-        $type = Admin::value('servicetype','=', 3);
-        $accessories_criteria = 0.02;
-        $accessories_final = number_format(($accessories_criteria * $budget),2);
-        //n% for bridal
-        $type = Admin::value('servicetype','=', 12);
-        $bridalcar_criteria = 0.02;
-        $bridalcar_final = number_format(($bridalcar_criteria * $budget),2);
-        //n% for tailoring
-        $type = Admin::value('servicetype','=', 11);
-        $tailoring_criteria = 0.02;
-        $tailoring_final = number_format(($tailoring_criteria * $budget),2);
-        //n% for giveaways
-        $type = Admin::value('servicetype','=', 4);
-        $giveaways_criteria = 0.02;
-        $giveaways_final = number_format(($giveaways_criteria * $budget),2);
-        }
-        //For other events
-        if ($types === 'Birthday'|| $types === 'Wedding Anniversary'|| $types === 'Christening'|| $types === 'Thanksgiving'|| $types === 'Debut'|| $types === 'Baby Shower'|| $types === 'Bridal Shower'|| $types === 'Founders Day Celebration'|| $types === 'Fashion Show'|| $types === 'Death Anniversary'|| $types === 'Graduation'|| $types === 'Simple Celebration') {
-        //n% for catering
-        $type = Admin::value('servicetype','=', 1);
-        $catering_criteria = 0.6; 
-        $catering_final = number_format(($catering_criteria * $budget),2);
-        //n% for equipment
-        $type = Admin::value('servicetype','=', 2);
-        $equipment_criteria = 0.15; 
-        $equipment_final = number_format(($equipment_criteria * $budget),2);
-        //n% for photography
-        $type = Admin::value('servicetype','=', 5);
-        $photography_criteria = 0.05; 
-        $photography_final = number_format(($photography_criteria * $budget),2);
-        //n% for giveaways
-        $type = Admin::value('servicetype','=', 4);
-        $giveaways_criteria = 0.05; 
-        $giveaways_final = number_format(($giveaways_criteria * $budget),2);
-        //n% for wine
-        $type = Admin::value('servicetype','=', 9);
-        $wine_criteria = 0.05; 
-        $wine_final = number_format(($wine_criteria * $budget),2);
-        //n% for entertainment
-        $type = Admin::value('servicetype','=', 7);
-        $entertainment_criteria = 0.05; 
-        $entertainment_final = number_format(($entertainment_criteria * $budget),2);
-        //n% for cakes
-        $type = Admin::value('servicetype','=', 8);
-        $cakes_criteria = 0.05; 
-        $cakes_final = number_format(($cakes_criteria * $budget),2);
-        }
-
-        return view('client.home', array('user', Auth::guard('user')->user()),compact('displayclients','displaypartners','dc','distinct','types','budget','catering_final','equipment_final','photography_final','styling_final','tailoring_final','giveaways_final','florist_final','entertainment_final','accessories_final','wine_final','cakes_final','bridalcar_final'));
+        return view('client.home', array('user', Auth::guard('user')->user()),compact('displayclients','displaypartners','dc','distinct'));
     }
 
     /**

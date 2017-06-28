@@ -76,7 +76,7 @@ class ChikkaController extends Controller
     }
     else{
         $data['status'] = 0;
-        Session::flash('failed_message', '');
+        Session::flash('wrongcode_message', '');
         return view('auth/verify');
     }
     

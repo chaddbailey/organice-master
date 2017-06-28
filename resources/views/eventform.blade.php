@@ -13,7 +13,9 @@ Make Event
            <link rel="stylesheet" href="../assets/dist/sweetalert.css">
             @if (Session::has('add_message'))
            <script>
-                  swal("Thank You!", "Event Successfully Booked!", "success")
+                  @foreach($admins as $admin)
+                  swal("Thank You!", "{{$admin->name}} Successfully Booked!", "success")
+                @endforeach
            </script>
             @endif
            </div>

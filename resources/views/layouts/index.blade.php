@@ -45,6 +45,17 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	        margin: 0;
 	        padding: 0;
 	      }
+	      .stars {
+	          margin: 20px 0;
+	          font-size: 24px;
+	          color: #d17581;
+	      }
+
+	      .ratings {
+	          color: #d17581;
+	          padding-left: 10px;
+	          padding-right: 10px;
+	      }
 	    </style>
 </head>
 <body>
@@ -95,7 +106,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 										<ul class="nav navbar-nav menu__list">
 											<li class="menu__item menu__item--current"><a href="{{ url('/') }}" class="menu__link"><span class="menu__helper">Home</span></a></li>
 											<li class="menu__item"><a href="#features" class="menu__link scroll"><span class="menu__helper">Services</span></a></li>
-											<li class="menu__item"><a href="#gallery" class="menu__link scroll"><span class="menu__helper">Gallery</span></a></li>
+											<li class="menu__item"><a href="#bookvenue" class="menu__link scroll"><span class="menu__helper">Book Venue</span></a></li>
+											
 											
 											
                     <!-- Authentication Links -->
@@ -265,7 +277,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </div>
 
 <!-- Counter -->
-	<div class="services-bottom">
+	<div class="services-bottom" id="bookvenue">
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 

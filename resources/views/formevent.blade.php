@@ -4,19 +4,74 @@
 Service Partners
 @endsection
 
+@section('navi')
+                      <li class="menu__item menu__item--current"><a href="{{ url('/') }}" class="menu__link"><span class="menu__helper">Home</span></a></li>
+                      <li class="menu__item"><a href="#bookevent" class="menu__link scroll"><span class="menu__helper">Book Event</span></a></li>
+                      <li class="menu__item"><a href="#gallery" class="menu__link scroll"><span class="menu__helper">Gallery</span></a></li>
+                      
+                      
+                    <!-- Authentication Links -->
+                    @if(Auth::guard('admin')->user())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::guard('admin')->user()->name }} <span class="caret"></span>
+                            </a>
 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-home"></i> Dashboard</a></li>
+                                <li><a href="{{ url('/admin/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @elseif(Auth::guard('user')->user())
+                        <li class="menu_item dropdown">
+                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::guard('user')->user()->firstname }} <span class="caret"></span>
+                            </a>
 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('client/home') }}"><i class="fa fa-btn fa-home"></i><b> Dashboard</b></a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i><b>Logout</b></a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="drop">
+                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
+                               Client <span class="caret"></span>
+                            </a>
 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/login') }}"></i>Login Client</a>
+                                </li>
+                                <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-register"></i>Register Client</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="drop">
+                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
+                               Service Partner <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="{{ url('/admin/login') }}">Login Partner</a></li>
+                               <li><a href="{{ url('/admin/register') }}">Register Partner</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
+@endsection
 
 @section('bodycontent')
   
-           <div class="row">
+           <div class="row" id="bookevent">
            <!-- SweetAlert -->
            <script src="../assets/dist/sweetalert.min.js"></script>
            <link rel="stylesheet" href="../assets/dist/sweetalert.css">
             @if (Session::has('add_message'))
            <script>
-                  swal("Thank You!", "Event Successfully Booked!", "success")
+                @foreach($admins as $admin)
+                  swal("Thank You!", "{{$admin->name}} Successfully Booked!", "success")
+                @endforeach
            </script>
             @endif
            </div>
@@ -53,7 +108,7 @@ Service Partners
 
                     <div class="col-md-4">
                         <div class="form-group">
-                          <label class="control-label">No. of Heads</label>
+                          <label class="control-label">No. of Guests</label>
                           <input type="text" name="heads" id="heads" class="form-control" value="">
                         </div>
                     </div>

@@ -15,7 +15,7 @@ Organice - Home
                   swal("Success!", "Your account is successfully verified!", "success")
            </script>
             @endif
-            @if (Session::has('failed_message'))
+            @if (Session::has('wrongcode_message'))
            <script>
                   swal("Failed!", "You entered the wrong code!", "error")
            </script>
@@ -25,24 +25,30 @@ Organice - Home
             <div class="content">
                 <div class="container-fluid">
                 
-
-
-
             <div id="myTabContent" class="tab-content">
-            
-
             <div role="tabpanel" class="tab-pane fade active in" id="catering" aria-labelledby="catering-tab">
-           
+           <?php
+           use Illuminate\Support\Str;
+           ?>
             <div class="row">
             @foreach($admins as $admin)
                     @if($admin->servicetype == '1')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -57,12 +63,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '2')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                    <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                    <p>
+                                    @for ($i=1; $i <= 5 ; $i++)
+                                        <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                    @endfor
+                                    {{ number_format($admin->rating_cache, 1) }} stars
+                                    </p>
                             </div>
                          </div>
                     </div>
@@ -76,12 +91,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '3')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -95,12 +119,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '4')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -114,12 +147,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '5')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -133,12 +175,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '6')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -152,12 +203,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '7')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -171,12 +231,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '8')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -190,12 +259,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '9')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -209,12 +287,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '10')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -228,12 +315,21 @@ Organice - Home
             @foreach($admins as $admin)
                     @if($admin->servicetype == '11')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -244,24 +340,29 @@ Organice - Home
 
             <div role="tabpanel" class="tab-pane fade active in" id="bridalcars" aria-labelledby="bridalcars-tab">
             <div class="row">
-            @forelse($admins as $admin)
+            @foreach($admins as $admin)
                     @if($admin->servicetype == '12')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $admin->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$admin->id)}}" >
                                 <p>{{$admin->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$admin->address}}</p>
                             </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$admin->rating_count}} {{ Str::plural('review', $admin->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $admin->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($admin->rating_cache, 1) }} stars
+                                </p>
+                            </div>
                          </div>
                     </div>
                     @endif
-            @empty
-             @if($admin->servicetype == '12')
-            <p style="margin-left: 10px;color: red;">There are no registered partners.</p>
-            @endif
-            @endforelse
+            @endforeach
             </div>
             </div>
 

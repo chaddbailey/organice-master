@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminAuth;
 
 use App\Admin;
 use App\ServiceType;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -49,10 +50,28 @@ class AuthController extends Controller
         return view('admin.auth.login');
     }
     
-    public function showRegistrationForm(){
+    public function showRegistrationForm(Request $request){
 
         $servicetypes = ServiceType::all();
+        // Handle the user upload of avatar
+       if($request->hasFile('avatar')){
+          $avatar = $request->file('avatar');
+          $filename = time() . '.' . $avatar->getClientOriginalExtension();
+          Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
 
+          $admin = Auth::guard('admin')->user();
+          $admin->avatar = $filename;
+          $admin->save();
+        }
+        if($request->hasFile('slider')){
+          $slider = $request->file('slider');
+          $filename = time() . '.' . $slider->getClientOriginalExtension();
+          Image::make($slider)->resize(300, 300)->save( public_path('/uploads/sliders/' . $filename ) );
+
+          $admin = Auth::guard('admin')->user();
+          $admin->slider = $filename;
+          $admin->save();
+        }
         return view('admin.auth.register',compact('servicetypes'));
     }
 

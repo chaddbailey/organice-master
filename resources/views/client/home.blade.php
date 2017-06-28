@@ -282,171 +282,6 @@
               </div>
           </div>
 
-          <div class="row">
-              <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="x_panel tile fixed_height_100">
-                  <div class="x_title">
-                    <h3>Breakdown of Expenses</h3>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                  <div class="row">
-                  @if($types === 'Wedding') 
-                          <table class="table" style="position: center;">
-                              <tr>
-                                  <th>Cost Drivers / Services</th>
-                                  <th>Allocated Budget</th>
-                              </tr>
-                              <tr>
-                                   <td class="design">Venue, Food and Beverages</td>
-                                   <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Catering/Food</td>
-                                  <td>₱ {{$catering_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Bartending/Beverages <small>(wines,alcohols,glasswares,etc...)</small> </td>
-                                  <td>₱ {{$wine_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Cakes and Pastries</td>
-                                  <td>₱ {{$cakes_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Decorations</td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Equipment <small>(lightings,rentals,chairs,sounds,etc...)</small></td>
-                                  <td>₱ {{$equipment_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Florist/Bouquet <small>(personal,decor flowers,etc...)</small></td>
-                                  <td>₱ {{$florist_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Photography/Videography</td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Photography and Videography <small>(photobooths,props,etc...)</small></td>
-                                  <td>₱ {{$photography_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Stationary/Paper Goods</td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
-                                  <td>₱ {{$giveaways_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Entertainment </td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Entertainment <small>(DJ,bands,DI,emcee,dancers,etc...)</small></td>
-                                  <td>₱ {{$entertainment_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Attire and Make-up </td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Styling <small>(hair and make-up,etc...)</small></td>
-                                  <td>₱ {{$styling_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td>Tailoring <small>(outfits,suits,gowns,etc...)</small> </td>
-                                  <td>₱ {{$tailoring_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Wedding Accessories and Others </td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Accessories <small>(accessories,rings,bracelets,etc...)</small></td>
-                                  <td>₱ {{$accessories_final}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="design">Entourage </td>
-                                  <td></td>
-                              </tr>
-                              <tr>
-                                  <td>Bridal Car/Entourage</td>
-                                  <td>₱ {{$bridalcar_final}}</td>
-                              </tr>
-                          </table>
-                  </div>
-                  @endif
-                  <div class="row"> 
-                      @if($types === 'Birthday'|| $types === 'Wedding Anniversary'|| $types === 'Christening'|| $types === 'Thanksgiving'|| $types === 'Debut'|| $types === 'Baby Shower'|| $types === 'Bridal Shower'|| $types === 'Founders Day Celebration'|| $types === 'Fashion Show'|| $types === 'Death Anniversary'|| $types === 'Graduation'|| $types === 'Simple Celebration')
-                             <table class="table" style="position: center;">
-                                 <tr>
-                                     <th>Cost Drivers / Services</th>
-                                     <th>Allocated Budget</th>
-                                 </tr>
-                                 <tr>
-                                      <td class="design">Venue, Food and Beverages</td>
-                                      <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Catering/Food</td>
-                                     <td>₱ {{$catering_final}}</td>
-                                 </tr>
-                                 <tr>
-                                     <td>Bartending/Beverages <small>(wines,alcohols,glasswares,etc...)</small> </td>
-                                     <td>₱ {{$wine_final}}</td>
-                                 </tr>
-                                 <tr>
-                                     <td>Cakes and Pastries</td>
-                                     <td>₱ {{$cakes_final}}</td>
-                                 </tr>
-                                 <tr>
-                                     <td class="design">Decorations</td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Equipment <small>(lightings,rentals,chairs,sounds,etc...)</small></td>
-                                     <td>₱ {{$equipment_final}}</td>
-                                 </tr>
-                                 <tr>
-                                     <td class="design">Photography/Videography</td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Photography and Videography <small>(photobooths,props,etc...)</small></td>
-                                     <td>₱ {{$photography_final}}</td>
-                                 </tr>
-                                 <tr>
-                                     <td class="design">Stationary/Paper Goods</td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
-                                     <td>₱ {{$giveaways_final}}</td>
-                                 </tr>
-                                 <tr>
-                                     <td class="design">Entertainment </td>
-                                     <td></td>
-                                 </tr>
-                                 <tr>
-                                     <td>Entertainment <small>(DJ,bands,DI,emcee,dancers,etc...)</small></td>
-                                     <td>₱ {{$entertainment_final}}</td>
-                                 </tr>
-                             </table>
-                        @endif
-                     </div>
-                    <div class="widget_summary">
-                      <div class="clearfix"></div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-          </div>
-
           <!-- Event Categories -->
           <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -475,9 +310,11 @@
                                 
                               <div class="clearfix"></div>
                             </div>
+                            
 
                             <div class="x_content">
                             <div class="row">
+                            <h3 class="x_title">Booked Partners</h3>
 
                              @foreach($dc as $dp)
                              @if($dt->event == $dp->event)

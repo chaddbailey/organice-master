@@ -87,59 +87,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<nav class="menu menu--francisco">
 										<ul class="nav navbar-nav menu__list">
-											<li class="menu__item menu__item--current"><a href="{{ url('/') }}" class="menu__link"><span class="menu__helper">Home</span></a></li>
-											<li class="menu__item"><a href="#features" class="menu__link scroll"><span class="menu__helper">Services</span></a></li>
-											<li class="menu__item"><a href="#gallery" class="menu__link scroll"><span class="menu__helper">Gallery</span></a></li>
-											
-											
-                    <!-- Authentication Links -->
-                    @if(Auth::guard('admin')->user())
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::guard('admin')->user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-home"></i> Dashboard</a></li>
-                                <li><a href="{{ url('/admin/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @elseif(Auth::guard('user')->user())
-                        <li class="menu_item dropdown">
-                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::guard('user')->user()->firstname }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @else
-                        <li class="drop">
-                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
-                               Client <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/login') }}"></i>Login Client</a>
-                                </li>
-                                <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-register"></i>Register Client</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="drop">
-                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
-                               Service Partner <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="{{ url('/admin/login') }}">Login Partner</a></li>
-                               <li><a href="{{ url('/admin/register') }}">Register Partner</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                
+											@yield('navi')
 										</ul>
 									</nav>
 									<div class="clearfix"></div>
@@ -165,7 +113,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<div class="container">
 
 			 	@yield('partnerabout')
-
+			<div class="clearfix"> </div>
+			<div class="border"></div>
+			 	@yield('packages')
 			<div class="clearfix"> </div>
 			<div class="border"></div>
 			<div class="panel col-md-12 col-sm-12 col-xs-12">

@@ -245,10 +245,10 @@
                     <div style = "width: auto; height: auto;">
 
                      @foreach($pack as $packs) 
-
+                          @if($packs->package_id == $packages->id)
                              <label class="control-label">{{$packs->contentname}}
                              </label><br>
-
+                          @endif
                      @endforeach
                      </div>
                    

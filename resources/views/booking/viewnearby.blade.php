@@ -257,7 +257,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                         
             </div>
            <div class="col-sm-6 pull-left" style="margin-left: 40px;">
-              <h3 style="font-size:30px; text-align: center;"">Total Projected Budget: ₱ {{$budget}}</h3>
+              
                      <div class="row"> 
                              <table class="table" style="position: center;">
                                  <tr>
@@ -344,11 +344,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                      <td>Bridal Car/Entourage</td>
                                      <td>₱ {{$bridalcar_final}}</td>
                                  </tr>
+                                 <tr>
+                                     <td><h3 style="font-size:30px; text-align: center;"">Total Projected Budget</h3></td>
+                                     <td>₱ {{$budget}}</td>
+                                 </tr>
                              </table>
                      </div>
                 @endif 
 
-                <!-- Birthday Event -->   
+                <!-- Other Event -->   
                                      @if($types === 'Birthday'|| $types === 'Wedding Anniversary'|| $types === 'Christening'|| $types === 'Thanksgiving'|| $types === 'Debut'|| $types === 'Baby Shower'|| $types === 'Bridal Shower'|| $types === 'Founders Day Celebration'|| $types === 'Fashion Show'|| $types === 'Death Anniversary'|| $types === 'Graduation'|| $types === 'Simple Celebration')
                                      <h1 style="font-size:60px; text-align: center;padding-top: 50px;">{{$types}}</h1>
                                                             
@@ -357,7 +361,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                          
              </div>
             <div class="col-sm-6 pull-left" style="margin-left: 40px;">
-               <h3 style="font-size:30px; text-align: center;"">Total Projected Budget: ₱ {{$budget}}</h3>
+               
                       <div class="row"> 
                               <table class="table" style="position: center;">
                                   <tr>
@@ -389,10 +393,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                       <td>₱ {{$equipment_final}}</td>
                                   </tr>
                                   <tr>
-                                      <td>Florist/Bouquet <small>(personal,decor flowers,etc...)</small></td>
-                                      <td>₱ {{$equipment_final}}</td>
-                                  </tr>
-                                  <tr>
                                       <td class="design">Photography/Videography</td>
                                       <td></td>
                                   </tr>
@@ -416,7 +416,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                                       <td>Giveaways/Invitations <small>(menu,programs,cards,etc...)</small></td>
                                       <td>₱ {{$giveaways_final}}</td>
                                   </tr>
-                                  
+                                  <tr>
+                                     <td><h3 style="font-size:30px; text-align: center;"">Total Projected Budget</h3></td>
+                                     <td>₱ {{$budget}}</td>
+                                 </tr>
                                   
                               </table>
                       </div>
@@ -433,6 +436,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!-- features -->
     <div class="features" id="features">
+    <div class="container">
     <h3> Recommended Partners </h3>
         <div class="content">
                 <div class="container-fluid">
@@ -464,8 +468,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
                             <li role="presentation" class=""><a href="#bridalcars" id="bridalcars-tab" data-toggle="tab" aria-controls="bridalcars" aria-expanded="false">Bridal Car Services</a></li>
 
-                            <li role="presentation" class=""><a href="#recommended" id="recommended-tab" data-toggle="tab" aria-controls="recommended" aria-expanded="false">Recommended</a></li>
-
 
                     </ul>
 
@@ -476,17 +478,28 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             
 
             <div role="tabpanel" class="tab-pane fade active in" id="catering" aria-labelledby="catering-tab">
-           
+           <?php
+           use Illuminate\Support\Str;
+           ?>
             <div class="row">
             @foreach($joins as $join)
                     @if($join->servicetype == '1')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -501,12 +514,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '2')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -520,12 +542,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '3')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -539,12 +570,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '4')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -558,12 +598,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '5')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -577,12 +626,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '6')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -596,12 +654,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '7')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -615,12 +682,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '8')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -634,12 +710,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '9')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -653,12 +738,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '10')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -672,12 +766,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             @foreach($joins as $join)
                     @if($join->servicetype == '11')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
                             </div>
                          </div>
                     </div>
@@ -688,27 +791,34 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
             <div role="tabpanel" class="tab-pane fade active in" id="bridalcars" aria-labelledby="bridalcars-tab">
             <div class="row">
-            @forelse($joins as $join)
+            @foreach($joins as $join)
                     @if($join->servicetype == '12')
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                         <div class="thumbnail" style="width:320px; height:285px" >
+                         <div class="thumbnail" style="width:320px; height:330px" >
                          <img src="/uploads/avatars/{{ $join->avatar }}" alt="..." style="width:320px; height:150px">
                             <div class="caption">
                                 <h2 style="text-align: center;"><a href="{{url('/partners/'.$join->id)}}" >
                                 <p>{{$join->name}}</p></a></h2>
                                 <p style="text-align: center;">{{$join->address}}</p>
                             </div>
+                            <div class="ratings">
+                                <p class="pull-right">{{$join->rating_count}} {{ Str::plural('review', $join->rating_count) }}</p>
+                                <p>
+                                @for ($i=1; $i <= 5 ; $i++)
+                                    <span class="glyphicon glyphicon-star{{ ($i <= $join->rating_cache) ? '' : '-empty'}}"></span>
+                                @endfor
+                                {{ number_format($join->rating_cache, 1) }} stars
+                                </p>
+                            </div>
                          </div>
                     </div>
                     @endif
-            @empty
-             @if($join->servicetype == '12')
-            <p style="margin-left: 10px;color: red;">There are no registered partners.</p>
-            @endif
-            @endforelse
+           
+            @endforeach
             </div>
             </div>
 
+            </div>
             </div>
             </div>
             </div>

@@ -54,7 +54,9 @@ class HomeController extends Controller
         if (!Auth::check()) {
             return view('auth.login');
         }
+
         $findpartner = Admin::find($id);
+        $partnerid = Admin::where('id',$id)->value('id');
         $package = DB::table('package')->where('partner_id', '=', $id)->get();
         $admins = Admin::where('id', $id)->get();
         $partners = Admin::where('id', $id)->get();
@@ -65,13 +67,17 @@ class HomeController extends Controller
         $clireq = ClientLatLng::where('c_id',$clients)->get();
         $data = ReqUsers::where('client_id',$clients)->get();
         $type = Admin::where('id',$id)->value('servicetype');
+
+        $content = DB::table('package')->join('packagecontent','package.id','=',
+            'packagecontent.package_id')->select('package.packagename','packagecontent.contentname','packagecontent.package_id')->where('partner_id', '=', $partnerid)->get();
+        
         //Counter//
         $services = DB::table('admins')->count();
         $users = DB::table('users')->count();
         $reviews = DB::table('reviews')->count();
         $requests = DB::table('request')->count();
 
-        return view('/partners', array('admin' => Admin::find($id)), compact('clireq','cli','data','admins','partners','package','events','images','findpartner','services','users','reviews','requests','type'));
+        return view('/partners', array('admin' => Admin::find($id)), compact('clireq','cli','data','admins','partners','package','content','events','images','findpartner','services','users','reviews','requests','type'));
     }
 
 

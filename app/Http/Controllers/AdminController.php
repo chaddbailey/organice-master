@@ -115,8 +115,8 @@ class AdminController extends Controller
 
         $package = DB::table('package')->where('partner_id', '=', $partner)->get();
 
-        $pack = DB::table('package')->leftjoin('packagecontent','package.id','=',
-            'packagecontent.package_id')->select('package.packagename','packagecontent.contentname')->where('partner_id', '=', $partner)->get();
+        $pack = DB::table('package')->join('packagecontent','package.id','=',
+            'packagecontent.package_id')->select('package.packagename','packagecontent.contentname','packagecontent.package_id')->where('partner_id', '=', $partner)->get();
 
         
 

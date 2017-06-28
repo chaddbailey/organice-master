@@ -4,6 +4,63 @@
 Service Partners
 @endsection
 
+@section('navi')
+                      <li class="menu__item menu__item--current"><a href="{{ url('/') }}" class="menu__link"><span class="menu__helper">Home</span></a></li>
+                      <li class="menu__item"><a href="#onsale" class="menu__link scroll"><span class="menu__helper">Packages/On Sale</span></a></li>
+                      <li class="menu__item"><a href="#bookservice" class="menu__link scroll"><span class="menu__helper">Book Service</span></a></li>
+                      <li class="menu__item"><a href="#gallery" class="menu__link scroll"><span class="menu__helper">Gallery</span></a></li>
+                      
+                      
+                    <!-- Authentication Links -->
+                    @if(Auth::guard('admin')->user())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::guard('admin')->user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-home"></i> Dashboard</a></li>
+                                <li><a href="{{ url('/admin/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @elseif(Auth::guard('user')->user())
+                        <li class="menu_item dropdown">
+                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::guard('user')->user()->firstname }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('client/home') }}"><i class="fa fa-btn fa-home"></i><b> Dashboard</b></a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i><b>Logout</b></a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="drop">
+                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
+                               Client <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/login') }}"></i>Login Client</a>
+                                </li>
+                                <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-register"></i>Register Client</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="drop">
+                            <a href="#" class="dropdown-toggle menu__link scroll" data-toggle="dropdown" role="button" aria-expanded="false">
+                               Service Partner <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="{{ url('/admin/login') }}">Login Partner</a></li>
+                               <li><a href="{{ url('/admin/register') }}">Register Partner</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
+@endsection
 
 @section('slider')
 <!-- banner -->
@@ -74,7 +131,6 @@ Service Partners
 @endsection
 
 @section('partnerabout')
-    
 
     @foreach($admins as $admin) 
       <div class="col-md-6 welcome-right">
@@ -88,7 +144,7 @@ Service Partners
         <h3 class="wow fadeInLeft animated animated" data-wow-delay=".5s">About</h3>
         <h4 class="wow fadeInLeft animated animated" data-wow-delay=".5s"></h4>
         <p class="wow fadeInLeft animated animated" data-wow-delay=".5s">
-        {{$admin->description}}
+        <p style="text-align: justify;">{{$admin->description}}</p>
         </p>
         <p><a href="#" class="view rew3" data-toggle="modal" data-target="#myMap">More details here...</a></p>
         <h5><a href="{{url('/packages/'. $admin->id)}}"><span class="glyphicon glyphicon-view" aria-hidden="true"></span>View Partner's Portfolio</a></h5>
@@ -148,15 +204,55 @@ Service Partners
 
 @endsection
 
+@section('packages')
+  <div class="services-bottom">
+          <div class="row" id="onsale">
+           <div class="col-md-12 col-sm-12 col-xs-12">
+             <div class="x_panel">
+                 <h3 style="color: white;">What's Available?</h3>
+                 <hr>
+               <div class="x_content">
+                
+                <div class="row" style="padding: 10px;">
+                  @forelse($package as $packages)
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                      <div class="thumbnail">
+                        <div style="width:320px; height:210px; padding-top: 25px;"><p style="font-size: 25px; text-align: center;">{{$packages->packagename}}<br><span class="label label-warning">Price: ₱ {{$packages->price}}</span></p>
+                        </div>
+                        <div class="caption" style="height:100%;">
+                             @foreach($content as $c)
+                                @if($c->package_id == $packages->id) 
+                                <label class="control-label">{{$c->contentname}}
+                                </label><br>
+                                @endif
+                             @endforeach
+                            
+                        </div>
+                      </div>
+                    </div>
+                  @empty
+                  <p style="margin-left: 450px;color: red;">No available packages from this partner.</p>
+                  @endforelse
+                </div>
+
+               </div>
+             </div>
+           </div>
+         </div>
+    </div>
+@endsection
+
 @section('bodycontent')
   
-           <div class="row">
+           <div class="row" id="bookservice">
            <!-- SweetAlert -->
            <script src="../assets/dist/sweetalert.min.js"></script>
            <link rel="stylesheet" href="../assets/dist/sweetalert.css">
             @if (Session::has('add_message'))
            <script>
-                  swal("Thank You!", "Event Successfully Booked!", "success")
+                  @foreach($admins as $admin)
+                  swal("Thank You!", "{{$admin->name}} Successfully Booked!", "success")
+                 @endforeach
            </script>
             @endif
             @if (Session::has('failed_message'))
